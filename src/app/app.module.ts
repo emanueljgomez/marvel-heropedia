@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
 import { Test2Component } from './components/test2/test2.component';
 
+// Manual imports:
+import { HttpClientModule } from '@angular/common/http';
+import { HeroesService } from './services/heroes.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +19,13 @@ import { Test2Component } from './components/test2/test2.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    HttpClientModule,
+    HeroesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
