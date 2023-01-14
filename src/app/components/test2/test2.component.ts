@@ -18,21 +18,17 @@ export class Test2Component {
     @Inject(HeroesService) public heroes: any, // Inject decorator is necessary for the dependency to work
     ) {}
 
+  ngOnInit() {
+    this.getHeroes();
+  }
+
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
   getHeroes(){
-    this.heroesService.getAllHeroes();
-    /*
-    .subscribe((data) => {
-      this.heroes = data;
-      console.log("DATA: ", data);
-    }),
-        (error) => {
-          console.log("ERROR: ", error);
-    };
-    */
+    this.heroes = this.heroesService.getAllHeroes();
     // Subscription to Observable won't be used here because
     // the 'async' pipe will be used in the HTML template
+    console.log("Result:", this.heroes);
   }
 
 }

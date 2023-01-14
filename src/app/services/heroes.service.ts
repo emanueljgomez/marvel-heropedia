@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 // Imports:
 import { HttpClient } from '@angular/common/http';
-import { map, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({ providedIn: 'root' })
@@ -19,19 +20,10 @@ export class HeroesService {
   // HTTP constructor:
   constructor( private http: HttpClient ) { }
 
-  // HTTP methods:
-  public getAllHeroes(){
-
-    fetch(this.URL_API)
-      .then(response => response.json())
-      .then(data => console.log(data));
-    
-    return this.http.get(this.URL_API).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      retry(5));
-      
+  // HTTP methods with Observables:
+  public getAllHeroes(): Observable<any> {
+    return this.http.get<any>(this.URL_API)
+      .pipe(map((data: any) => data.data.results))
   }
 
 }
