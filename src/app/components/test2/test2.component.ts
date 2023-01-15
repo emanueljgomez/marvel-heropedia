@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 // Imports:
 import { HeroesService } from 'src/app/services/heroes.service';
 import { Observable } from 'rxjs';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-test2',
@@ -18,6 +19,8 @@ export class Test2Component {
     @Inject(HeroesService) public heroes: Observable<any>, // Inject decorator is necessary for the dependency to work
     ) {}
 
+  dataSource: any = new MatTableDataSource();
+
   ngOnInit() {
     this.getHeroes();
   }
@@ -26,7 +29,10 @@ export class Test2Component {
   // Data is stored in 'heroes'
   getHeroes(){
     this.heroes = this.heroesService.getAllHeroes();
-      this.heroes.forEach(element => console.log("Heroes: ",element));
+    this.heroes.forEach(element => this.dataSource.data = element);
+
+    console.log("Heroes: ", this.dataSource);
+    //this.heroes.forEach(element => console.log("Heroes: ",element));
 
     // Subscription to Observable won't be used here because
     // the 'async' pipe will be used in the HTML template
