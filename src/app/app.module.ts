@@ -9,6 +9,7 @@ import { Test2Component } from './components/test2/test2.component';
 // Manual imports:
 import { HttpClientModule } from '@angular/common/http';
 import { HeroesService } from './services/heroes.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HeroesService } from './services/heroes.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     HttpClientModule,
