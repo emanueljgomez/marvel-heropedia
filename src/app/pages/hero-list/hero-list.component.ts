@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
-  selector: 'app-test2',
-  templateUrl: './test2.component.html',
-  styleUrls: ['./test2.component.css']
+  selector: 'app-hero-list',
+  templateUrl: './hero-list.component.html',
+  styleUrls: ['./hero-list.component.css']
 })
-export class Test2Component {
+export class HeroListComponent {
 
   // Service injection:
   constructor (
