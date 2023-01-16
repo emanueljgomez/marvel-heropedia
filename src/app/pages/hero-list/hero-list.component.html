@@ -1,5 +1,32 @@
 <p>hero-list works!</p>
 
+<!--
 <p *ngFor="let hero of heroes | async">
     {{ hero.name }}
 </p>
+-->
+
+<div style="width: 30%; margin-left: 70%;">
+    <input matInput (keyup)="filterData($event)" placeholder='Hero search'>
+</div>
+
+<div>
+<mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+
+    <!-- Heroes Column -->
+    <ng-container matColumnDef="Heroes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 16,66%;"> Heroes </th>
+      <td mat-cell *matCellDef="let row" style="width: 16,66%;"> {{row.name}} </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </mat-table>
+
+<mat-paginator
+  [pageSizeOptions]="[10, 20, 50, 100]"
+  showFirstLastButtons
+  aria-label="Select page of variables">
+</mat-paginator>
+</div>

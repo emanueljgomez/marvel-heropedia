@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 // Imports:
 import { HeroesService } from 'src/app/services/heroes.service';
 import { Observable } from 'rxjs';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSortModule, MatSort, Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-hero-list',
@@ -18,11 +20,21 @@ export class HeroListComponent {
     // so 'heroes' is declared as public, inside the constructor
     @Inject(HeroesService) public heroes: Observable<any>, // Inject decorator is necessary for the dependency to work
     ) {}
-
+  
+  displayedColumns: string [] = ['Heroes'];
   dataSource: any = new MatTableDataSource();
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.getHeroes();
+  }
+
+  ngAfterViewInit() { 
+    // This must be executed after data loads
+    // in order for Paginator to work properly:
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   // Method for getting a list with all Marvel heroes
@@ -48,5 +60,12 @@ export class HeroListComponent {
     */
 
   }
+  
+  // ---------- [ TABLE SEARCH FILTER ] ----------
+
+  filterData ($event: any){
+    this.dataSource.filter = $event.target.value;
+  }
+
 
 }
