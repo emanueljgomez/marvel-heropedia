@@ -23,11 +23,14 @@ export class HeroListComponent {
   
   displayedColumns: string [] = ['Heroes'];
   dataSource: any = new MatTableDataSource();
+  dataArray1: any = new MatTableDataSource();
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.getHeroes();
+    this.getHeroes200();
   }
 
   ngAfterViewInit() { 
@@ -58,7 +61,23 @@ export class HeroListComponent {
         console.log(error);
       });
     */
+  }
 
+  getHeroes200(){
+    this.heroes = this.heroesService.getAllHeroes200();
+    this.heroes.forEach(element => this.dataArray1.data = element);
+
+    console.log("Heroes 2: ", this.dataArray1);
+  }
+
+  fusionarData() {
+    //this.dataSource.data.push(this.dataArray1.data);
+    for (let i = 0; i < this.dataArray1.data.length; i++) {
+      this.dataSource.data.push(this.dataArray1.data[i]);
+    }
+
+    console.log("Heroes MIX: ", this.dataSource);
+    console.log("Heroe Nro 200: ", this.dataSource.data[199]);
   }
   
   // ---------- [ TABLE SEARCH FILTER ] ----------
