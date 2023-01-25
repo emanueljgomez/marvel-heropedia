@@ -25,11 +25,14 @@ export class HeroListComponent {
   totalHeroes = 2708;
   splitHeroes = 2708 / 100;
   totalArrays = Math.round(this.splitHeroes); // +1
+  maxOffsetIndex = 1500;
+  //x = 0;
   
   // Data variables for Material Table:
   displayedColumns: string [] = ['Heroes'];
   dataSource: any = new MatTableDataSource();
-  dataArray = [];
+  //auxDataSource: any = new MatTableDataSource();
+  //dataArray = [];
 
   // Variables for URL generation:
   PUBLIC_KEY = 'ddbe649e8f64b8a35ba2a6203c2e9b86';
@@ -37,9 +40,12 @@ export class HeroListComponent {
   // through a MD5 Hash Generator ( https://letmegooglethat.com/?q=MD5+hash+generator )
   // The Public and Private Keys are provided by the API ( https://developer.marvel.com/ )
   HASH = '1c820bbadd4cd42eb3139d95fe35aa64';
+  
   OFFSET = 0; // URL parameter: controls the amount of elements skipped per call
+  /*
   URL_API = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=${this.OFFSET}&limit=100`; // '&limit=100' controls amount of elements returned (max 100 per call)
-  //URL_API_2 = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=100&limit=100`;
+  //URL_API_2 = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=100&limit=100`; <--- OUT OF USE
+  */
 
   // Additional Mat Table functionalities:
   @ViewChild(MatSort) sort: MatSort;
@@ -50,7 +56,7 @@ export class HeroListComponent {
   // ------------------------------------------------------------
 
   ngOnInit() {
-    this.initializeDataArray();
+    //this.initializeDataArray();
     this.getHeroes();
     //this.getHeroes200();
   }
@@ -65,16 +71,30 @@ export class HeroListComponent {
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
   getHeroes(){
+    //this.initializeDataArray();
+  //for (let i = 0; i < this.totalArrays; i+100) {    
+    let URL_API = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=${this.OFFSET}&limit=100`; // 1500 max admitted offset (retrieves all heroes until the Z) -- ${this.OFFSET}
+    console.log("URL: ", URL_API)
 
-  //for (let i = 0; i < this.totalArrays; i+100) {  
-    
-    this.OFFSET = 200;
-    this.heroes = this.heroesService.getAllHeroes(this.URL_API);  // Subscription to Observable won't be used here because the 'async' pipe will be used in the HTML template
-    this.heroes.forEach(element => this.dataArray[0].data = element);
+    this.heroes = this.heroesService.getAllHeroes(URL_API);  // Subscription to Observable won't be used here because the 'async' pipe will be used in the HTML template
+    //this.heroes.forEach(element => this.dataSource.data = element);
+    this.heroes.forEach(element => this.dataSource.data = element);
+    //this.dataSource.data.push(this.auxDataSource.data);
+    //this.dataArray.push(this.auxDataSource);
+    //this.dataSource.data.push(this.dataArray[this.x].data);
     //}
 
-    console.log("Heroes Data Array: ", this.dataArray);
-
+    
+    if (this.OFFSET < this.maxOffsetIndex) {
+      this.OFFSET = this.OFFSET + 100;
+      //this.x = this.x + 1;
+      this.getHeroes();
+      //console.log("X: ", this.x);
+      console.log("Heroes Data Source: ", this.dataSource);
+      //console.log("Aux Data Array: ", this.auxDataSource);
+      //console.log("Data Array: ", this.dataArray);
+    }
+  
   }
 
   /*
@@ -85,11 +105,13 @@ export class HeroListComponent {
     console.log("Heroes 2: ", this.dataArray1);
   } */
 
+  /*
   initializeDataArray() {
     for (var i = 0; i < this.totalArrays; ++i) {
       this.dataArray[i] = new MatTableDataSource();
     }
   }
+  */
 
   /*
   fusionarData() {
