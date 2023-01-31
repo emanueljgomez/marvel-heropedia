@@ -22,17 +22,17 @@ export class HeroListComponent {
     ) {}
 
   // Calculating total amount of required data arrays:
-  totalHeroes = 2708;
-  splitHeroes = 2708 / 100;
-  totalArrays = Math.round(this.splitHeroes); // +1
+  //totalHeroes = 2708;
+  //splitHeroes = 2708 / 100;
+  //totalArrays = Math.round(this.splitHeroes); // +1
   maxOffsetIndex = 1500;
   //x = 0;
   
   // Data variables for Material Table:
   displayedColumns: string [] = ['Heroes'];
   dataSource: any = new MatTableDataSource();
-  //auxDataSource: any = new MatTableDataSource();
-  //dataArray = [];
+  auxDataSource: any = new MatTableDataSource();
+  dataArray = [];
 
   // Variables for URL generation:
   PUBLIC_KEY = 'ddbe649e8f64b8a35ba2a6203c2e9b86';
@@ -71,30 +71,36 @@ export class HeroListComponent {
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
   getHeroes(){
-    //this.initializeDataArray();
+  //this.initializeDataArray();
   //for (let i = 0; i < this.totalArrays; i+100) {    
     let URL_API = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=${this.OFFSET}&limit=100`; // 1500 max admitted offset (retrieves all heroes until the Z) -- ${this.OFFSET}
-    console.log("URL: ", URL_API)
+    //console.log("URL: ", URL_API)
 
-    this.heroes = this.heroesService.getAllHeroes(URL_API);  // Subscription to Observable won't be used here because the 'async' pipe will be used in the HTML template
-    //this.heroes.forEach(element => this.dataSource.data = element);
+    this.heroes = this.heroesService.getAllHeroes(URL_API);  // Subscription to Observable is not necessary, RxJS manages subscription
     this.heroes.forEach(element => this.dataSource.data = element);
+
+    console.log("DataSource: ", this.dataSource);
+    //this.heroes.forEach(element => this.auxDataSource.data = element);    
+    //this.heroes.forEach(element => this.dataSource.data.push(element))
+
     //this.dataSource.data.push(this.auxDataSource.data);
     //this.dataArray.push(this.auxDataSource);
     //this.dataSource.data.push(this.dataArray[this.x].data);
     //}
-
+    
     
     if (this.OFFSET < this.maxOffsetIndex) {
       this.OFFSET = this.OFFSET + 100;
       //this.x = this.x + 1;
       this.getHeroes();
       //console.log("X: ", this.x);
-      console.log("Heroes Data Source: ", this.dataSource);
+      //console.log("Aux Data Source: ", this.auxDataSource);
+      //console.log("Heroes Data Source: ", this.dataSource);
       //console.log("Aux Data Array: ", this.auxDataSource);
       //console.log("Data Array: ", this.dataArray);
     }
-  
+    
+
   }
 
   /*
