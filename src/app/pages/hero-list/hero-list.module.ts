@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     // Required Angular Material modules:
     MatTableModule,
     MatPaginatorModule,
-    MatFormFieldModule
+    MatFormFieldModule,
     // ---------------------------------
   ],
   exports: [
