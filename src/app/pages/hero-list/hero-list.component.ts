@@ -28,6 +28,8 @@ export class HeroListComponent {
   //maxOffsetIndex = 1500;
   //totalArrays = (this.maxOffsetIndex / 100) + 1;
   //x = 0;
+
+  tome_n: any;
   
   // Data variables for Material Table:
   displayedColumns: string [] = ['Heroes'];
@@ -64,16 +66,16 @@ export class HeroListComponent {
 
   ngOnInit() {
     //this.initializeDataArray();
-    //this.getHeroes();
+    this.getHeroes(0);
     //this.getHeroes200();
-    this.dataSourceSetup();
+    //this.dataSourceSetup();
   }
 
   ngAfterViewInit() { 
     // This must be executed after data loads
     // in order for Paginator to work properly:
     //this.getHeroes(); ---- Comentado porque: getHeroes va a ser llamado desde botones en el HTML
-    
+    this.dataSourceSetup();
   }
 
   /*
@@ -87,6 +89,9 @@ export class HeroListComponent {
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
   getHeroes(offsetValue: any){  // offsetValue un nro de 100 en 100, empezando en 0 y hasta 1500
+
+    this.checkTomeNumber(offsetValue);
+
   //this.initializeDataArray();
   //for (let i = 0; i < this.totalArrays; i+100) {    
     let URL_API = `https:gateway.marvel.com/v1/public/characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&offset=${offsetValue}&limit=100`; // 1500 max admitted offset (retrieves all heroes until the Z) -- ${this.OFFSET}
@@ -155,6 +160,47 @@ export class HeroListComponent {
   dataSourceSetup() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  checkTomeNumber(n) {
+
+    switch (n) {
+
+      case 0: this.tome_n = 1;
+        break;
+      case 100: this.tome_n = 2;
+        break;
+      case 200: this.tome_n = 3;
+        break;
+      case 300: this.tome_n = 4;
+        break;
+      case 400: this.tome_n = 5;
+        break;
+      case 500: this.tome_n = 6;
+        break;
+      case 600: this.tome_n = 7;
+        break;
+      case 700: this.tome_n = 8;
+        break;
+      case 800: this.tome_n = 9;
+        break;
+      case 900: this.tome_n = 10;
+        break;
+      case 1000: this.tome_n = 11;
+        break;
+      case 1100: this.tome_n = 12;
+        break;
+      case 1200: this.tome_n = 13;
+        break;
+      case 1300: this.tome_n = 14;
+        break;
+      case 1400: this.tome_n = 15;
+        break;
+      case 1500: this.tome_n = 16;
+        break;
+
+    }
+
   }
 
 }
