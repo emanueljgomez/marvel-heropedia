@@ -55,7 +55,7 @@
 
     <ng-container matColumnDef="Heroes">
       <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 16,66%;"></th>
-        <td mat-cell *matCellDef="let row" style="width: 16,66%;"> {{ row.name }} </td>
+        <td mat-cell *matCellDef="let row" style="width: 16,66%;"> <button (click)="publishCharacterId( row.id )"> {{ row.name }} </button> </td>
     </ng-container>
   
   

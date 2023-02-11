@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { DataShareService } from 'src/app/services/data-share.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-list',
@@ -15,6 +17,8 @@ export class HeroListComponent {
 
   // Service injection:
   constructor (
+    private dataShareService : DataShareService,
+    private router: Router,
     private heroesService: HeroesService,
     // In strict mode, all variables must be initialized,
     // so 'heroes' is declared as public, inside the constructor
@@ -92,7 +96,7 @@ export class HeroListComponent {
 
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
-  getHeroes(offsetValue: any){  // offsetValue un nro de 100 en 100, empezando en 0 y hasta 1500
+  getHeroes(offsetValue: any) {  // offsetValue un nro de 100 en 100, empezando en 0 y hasta 1500
 
     this.checkTomeNumber(offsetValue);
 
@@ -103,6 +107,7 @@ export class HeroListComponent {
 
     this.heroes = this.heroesService.getAllHeroes(URL_API);  // Subscription to Observable is not necessary, RxJS manages subscription
     this.heroes.forEach(element => this.dataSource.data = element);
+    //console.log("Characters: ", this.dataSource);
 
     //console.log("Data Array (Data Sources): ", this.dataArray);
     //this.heroes.forEach(element => this.auxDataSource.data = element);    
@@ -128,6 +133,11 @@ export class HeroListComponent {
     */
     
 
+  }
+
+  public publishCharacterId(id) {
+    this.dataShareService.putDataToStream(id);
+    this.router.navigate(['/hero-detail']);
   }
 
   /*
@@ -174,7 +184,7 @@ export class HeroListComponent {
     {
       this.offsetArray[i] = offset;
       offset = offset +100;
-      console.log("this.offsetArray - Index: ",i , " - Value: ", this.offsetArray[i]);
+      //console.log("this.offsetArray - Index: ",i , " - Value: ", this.offsetArray[i]);
     }
   }
 
