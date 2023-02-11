@@ -30,6 +30,9 @@ export class HeroListComponent {
   //x = 0;
 
   tome_n: any;
+  offsetArray = [];
+  romanArray = [ 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI' ];
+  lettersArray = [ 'A-B', 'B-C', 'C-D', 'D-E', 'E-G', 'G-I', 'I-L', 'L-M', 'M', 'M-P', 'P-R', 'R-S', 'S', 'S-T', 'T-W', 'W-Z' ];
   
   // Data variables for Material Table:
   displayedColumns: string [] = ['Heroes'];
@@ -76,6 +79,7 @@ export class HeroListComponent {
     // in order for Paginator to work properly:
     //this.getHeroes(); ---- Comentado porque: getHeroes va a ser llamado desde botones en el HTML
     this.dataSourceSetup();
+    this.offsetArraySetup();
   }
 
   /*
@@ -162,41 +166,53 @@ export class HeroListComponent {
     this.dataSource.sort = this.sort;
   }
 
+  offsetArraySetup() {
+
+    let offset = 0;
+
+    for (let i = 0; i < 16; i++)
+    {
+      this.offsetArray[i] = offset;
+      offset = offset +100;
+      console.log("this.offsetArray - Index: ",i , " - Value: ", this.offsetArray[i]);
+    }
+  }
+
   checkTomeNumber(n) {
 
     switch (n) {
 
-      case 0: this.tome_n = 1;
+      case 0: this.tome_n = 'I';
         break;
-      case 100: this.tome_n = 2;
+      case 100: this.tome_n = 'II';
         break;
-      case 200: this.tome_n = 3;
+      case 200: this.tome_n = 'III';
         break;
-      case 300: this.tome_n = 4;
+      case 300: this.tome_n = 'IV';
         break;
-      case 400: this.tome_n = 5;
+      case 400: this.tome_n = 'V';
         break;
-      case 500: this.tome_n = 6;
+      case 500: this.tome_n = 'VI';
         break;
-      case 600: this.tome_n = 7;
+      case 600: this.tome_n = 'VII';
         break;
-      case 700: this.tome_n = 8;
+      case 700: this.tome_n = 'VIII';
         break;
-      case 800: this.tome_n = 9;
+      case 800: this.tome_n = 'IX';
         break;
-      case 900: this.tome_n = 10;
+      case 900: this.tome_n = 'X'
         break;
-      case 1000: this.tome_n = 11;
+      case 1000: this.tome_n = 'XI';
         break;
-      case 1100: this.tome_n = 12;
+      case 1100: this.tome_n = 'XII';
         break;
-      case 1200: this.tome_n = 13;
+      case 1200: this.tome_n = 'XIII';
         break;
-      case 1300: this.tome_n = 14;
+      case 1300: this.tome_n = 'XIV';
         break;
-      case 1400: this.tome_n = 15;
+      case 1400: this.tome_n = 'XV';
         break;
-      case 1500: this.tome_n = 16;
+      case 1500: this.tome_n = 'XVI';
         break;
 
     }

@@ -3,43 +3,49 @@
 <!-- <div class="position-absolute top-50 start-50 translate-middle main-container"> -->
 <div class="main-container">
 <div class="content-container">
-Encyclopaedia Multiversalis
+<h1 class="main-title">ENCYCLOPÆDIA MVLTIVERSALIS</h1>
 <br>
 
 <div class="container text-center">
   <div class="row justify-content-center">
-    <button class="col-1" (click)="getHeroes(0)" style="margin: 0; padding: 0; border: none;"><img src="../assets/img/descarga.jpg"></button>
-    <button class="col-1" (click)="getHeroes(100)">TOME 2</button>
-    <button class="col-1" (click)="getHeroes(200)">TOME 3</button>
-    <button class="col-1" (click)="getHeroes(300)">TOME 4</button>
-    <button class="col-1" (click)="getHeroes(400)">TOME 5</button>
-    <button class="col-1" (click)="getHeroes(500)">TOME 6</button>
-    <button class="col-1" (click)="getHeroes(600)">TOME 7</button>
-    <button class="col-1" (click)="getHeroes(700)">TOME 8</button>
-    <button class="col-1" (click)="getHeroes(800)">TOME 9</button>
-    <button class="col-1" (click)="getHeroes(900)">TOME 10</button>
-    <button class="col-1" (click)="getHeroes(1000)">TOME 11</button>
-    <button class="col-1" (click)="getHeroes(1100)">TOME 12</button>
-    <button class="col-1" (click)="getHeroes(1200)">TOME 13</button>
-    <button class="col-1" (click)="getHeroes(1300)">TOME 14</button>
-    <button class="col-1" (click)="getHeroes(1400)">TOME 15</button>
-    <button class="col-1" (click)="getHeroes(1500)">TOME 16</button>
+
+    <span class="bookshelf bshelf-props"> . </span>
+    <button class="col-1 tome-btn"
+        *ngFor="let btn of offsetArray; let i = index"
+        (click)="getHeroes(offsetArray[i])"
+        >
+      <img src="../assets/img/descarga.jpg">
+      <p class="tome-info">TOME {{romanArray[i]}}<br><br>{{lettersArray[i]}}</p>
+    </button>
+    <span class="bookshelf bshelf-props"> . </span>
+
   </div>
 </div>
 
 
 <div>
-<h1>TOME {{tome_n}}</h1>
+
+<hr>
+<h1 class="tome-title">TOME {{tome_n}}</h1>
+
 
 <mat-paginator
   [pageSizeOptions]="[10, 20, 50, 100]"
   showFirstLastButtons
-  aria-label="Select page of variables">
+  aria-label="Select page of variables"
+  style="position: relative;
+  left: 0px;
+  top: 0px;
+  padding: 0px;
+  color: white;
+  background-color: transparent;"
+  >
 </mat-paginator>
 
-<div style="width: 30%; margin-left: 70%;">
-  <input matInput (keyup)="filterData($event)" placeholder='Hero search'>
+<div>
+  <input matInput (keyup)="filterData($event)" placeholder='Character search'>
 </div>
+<hr>
 
 </div>
 
@@ -65,4 +71,4 @@ Encyclopaedia Multiversalis
 </div>
 <!--
 </div>
--->
+--> 
