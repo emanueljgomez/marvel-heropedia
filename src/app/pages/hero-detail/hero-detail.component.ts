@@ -15,6 +15,8 @@ export class HeroDetailComponent {
     incomingData: any;
     data: any;
     character: any;
+    imgUrl: any;
+    charDescription: any;
 
     // Service injection:
     constructor (
@@ -67,7 +69,10 @@ export class HeroDetailComponent {
     this.hero.subscribe({
       next:(data: any) => {
         this.character = data;
-        console.log("Mostrar Personaje: ", this.character);
+        //console.log("Mostrar Personaje: ", this.character);
+        this.imgUrl = this.character[0].thumbnail.path + '.' + this.character[0].thumbnail.extension
+        //console.log("URL IMG: ", this.imgUrl);
+        this.checkDescription();
       },
       error: (err: any) => {
         console.log("Falló getHeroById: ",err);
@@ -75,5 +80,19 @@ export class HeroDetailComponent {
     });
 
   }
+
+// =========================================================
+// ================= [ HELPER FUNCTIONS ] ==================
+// =========================================================
+
+checkDescription() {
+  if ( this.character[0].description == '' )
+  {
+    this.charDescription = 'No information available';
+  } else
+  {
+    this.charDescription = this.character[0].description;
+  }
+}
 
 }
