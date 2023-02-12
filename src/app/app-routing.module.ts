@@ -6,6 +6,12 @@ import { HeroListComponent } from './pages/hero-list/hero-list.component';
 const routes: Routes = [
 
   {
+    path: '',
+    redirectTo: 'hero-list',
+    pathMatch: 'full'
+  },
+
+  {
     path: 'hero-list',
     component: HeroListComponent
   },

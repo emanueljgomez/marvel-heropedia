@@ -1,0 +1,36 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+.content-container{
+    width: 80%;
+    height: 40%;
+    margin: 20px auto;
+    border: 0.3px solid #1b1b1b;
+    border-radius: 10px;
+    padding: 30px;
+  }
+
+  .main-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: 60px;
+    text-align: center;
+  }
+
+  .character-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.thumb-img {
+    width: 30vw;
+    border-radius: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -10,15 +10,58 @@
   }
   
 .content-container{
-    width: 75%;
+    width: 80%;
     height: 40%;
     margin: 20px auto;
-    border: 0.3px solid #cecece;
+    border: 0.3px solid #1b1b1b;
     border-radius: 10px;
-    padding: 10px;
+    padding: 30px;
   }
 
+  .main-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: 60px;
+    text-align: center;
+  }
 
+  .tome-btn {
+    position: relative;
+    padding: 0;
+    border: none;
+    margin: 2px;
+  }
+
+  .tome-title {
+  font-family: 'Cormorant', serif;
+  font-weight: 400;
+  font-size: xx-large;
+  position: absolute;
+  z-index: 1;
+  }
+
+  .tome-info {
+    position: absolute;
+    top: 0;
+    padding: 40px 10px;
+    color: #BDB76B;
+    text-shadow: 1px 1px 2px rgb(180, 127, 48), 0 0 1em rgb(37, 18, 6), 0 0 0.2em rgb(0, 0, 0);
+  }
+
+  .bookshelf {
+    background: url("https://as2.ftcdn.net/v2/jpg/03/78/46/67/1000_F_378466764_cAJJAUu1rY7yTye80K0y2wVdiXzlW47z.jpg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+  }
+
+  .bshelf-props {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 10px;
+    color: transparent;
+    background-color: #BDB76B;
+  }
 
 
 /*

@@ -39,6 +39,11 @@ export class HeroesService {
       .pipe(map((data: any) => data.data.results))
   }
 
+  public getHeroById(url: any): Observable<any> {
+    return this.http.get<any>(url)
+      .pipe(map((data: any) => data.data.results))
+  }
+
   /*
   public getAllHeroes200(): Observable<any> {
     return this.http.get<any>(this.URL_API_2)
