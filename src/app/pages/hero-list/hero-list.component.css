@@ -10,7 +10,7 @@
   }
   
 .content-container{
-    width: 80%;
+    width: 60%;
     height: 40%;
     margin: 20px auto;
     border: 0.3px solid #1b1b1b;
@@ -49,7 +49,6 @@
   }
 
   .bookshelf {
-    background: url("https://as2.ftcdn.net/v2/jpg/03/78/46/67/1000_F_378466764_cAJJAUu1rY7yTye80K0y2wVdiXzlW47z.jpg");
     background-repeat: no-repeat, repeat;
     background-size: cover;
   }
@@ -62,7 +61,6 @@
     color: transparent;
     background-color: #BDB76B;
   }
-
 
 /*
 .main-container {
