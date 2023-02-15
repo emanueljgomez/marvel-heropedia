@@ -10,7 +10,7 @@
   }
   
 .content-container{
-    width: 80%;
+    width: 60%;
     height: 40%;
     margin: 20px auto;
     border: 0.3px solid #1b1b1b;
@@ -49,7 +49,6 @@
   }
 
   .bookshelf {
-    background: url("https://as2.ftcdn.net/v2/jpg/03/78/46/67/1000_F_378466764_cAJJAUu1rY7yTye80K0y2wVdiXzlW47z.jpg");
     background-repeat: no-repeat, repeat;
     background-size: cover;
   }
@@ -63,19 +62,32 @@
     background-color: #BDB76B;
   }
 
-
-/*
-.main-container {
-    width: 75%;
-    padding-top: 60vw;
-    background-color: red;
+.char-btn {
+  width: 30vw;
+  padding: 4px;
+  background-color: #797548;
+  font-weight: bold;
+  border-radius: 4px;
+  color: white;
+  text-shadow: black 2px 2px 2px;
 }
 
-@media screen and (max-width: 1297px) {
-    .main-container {
-        padding-top: 80vw;
-        background-color: blue;
-    }
-  }
+.table-cell {
+  text-align: center;
+  width: 100vw;
+  background-color: #151515;
+}
 
-  */
+.table-header {
+  color: #BDB76B;
+  font-family: 'Cormorant', serif;
+}
+
+.paginator {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  padding: 0px;
+  color: white;
+  background-color: transparent;
+}

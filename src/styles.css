@@ -14,7 +14,7 @@
 html, body
 { 
     height: 100%;
-    background-color:black;
+    background-color: black;
 }
 
 body {
@@ -26,3 +26,8 @@ body {
     background-color: white;
 }
 
+.mat-mdc-paginator-range-actions {
+    background-color: #BDB76B;
+    color: black;
+    border-radius: 10px;
+}

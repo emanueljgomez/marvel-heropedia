@@ -5,7 +5,7 @@
   }
   
 .content-container{
-    width: 80%;
+    width: 60%;
     height: 40%;
     margin: 20px auto;
     border: 0.3px solid #1b1b1b;
@@ -33,4 +33,17 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.back-btn {
+  width: 10vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #797548;
+  color: white;
+  text-shadow: black 2px 2px 2px;
+  font-family: 'Cormorant', serif;
+  font-size: larger;
+  padding: 4px;
 }
