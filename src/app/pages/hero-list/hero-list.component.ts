@@ -34,6 +34,7 @@ export class HeroListComponent {
   //x = 0;
 
   tome_n: any;
+  tableHeader: any;
   offsetArray = [];
   romanArray = [ 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI' ];
   lettersArray = [ 'A-B', 'B-C', 'C-D', 'D-E', 'E-G', 'G-I', 'I-L', 'L-M', 'M', 'M-P', 'P-R', 'R-S', 'S', 'S-T', 'T-W', 'W-Z' ];
@@ -73,7 +74,7 @@ export class HeroListComponent {
 
   ngOnInit() {
     //this.initializeDataArray();
-    this.getHeroes(0);
+    this.getHeroes(0, 0);
     //this.getHeroes200();
     //this.dataSourceSetup();
   }
@@ -96,7 +97,7 @@ export class HeroListComponent {
 
   // Method for getting a list with all Marvel heroes
   // Data is stored in 'heroes'
-  getHeroes(offsetValue: any) {  // offsetValue un nro de 100 en 100, empezando en 0 y hasta 1500
+  getHeroes(offsetValue: any, index: any) {  // offsetValue un nro de 100 en 100, empezando en 0 y hasta 1500
 
     this.checkTomeNumber(offsetValue);
 
@@ -107,31 +108,9 @@ export class HeroListComponent {
 
     this.heroes = this.heroesService.getAllHeroes(URL_API);  // Subscription to Observable is not necessary, RxJS manages subscription
     this.heroes.forEach(element => this.dataSource.data = element);
-    //console.log("Characters: ", this.dataSource);
-
-    //console.log("Data Array (Data Sources): ", this.dataArray);
-    //this.heroes.forEach(element => this.auxDataSource.data = element);    
-    //this.heroes.forEach(element => this.dataSource.data.push(element))
-
-    //this.dataSource.data.push(this.auxDataSource.data);
-    //this.dataArray.push(this.auxDataSource);
-    //this.dataSource.data.push(this.dataArray[this.x].data);
-    //}
+    //console.log("Characters: ", this.dataSource); 
     
-    /*
-    if (this.OFFSET < this.maxOffsetIndex) {
-      this.INDEX = this.INDEX + 1;
-      this.OFFSET = this.OFFSET + 100;
-      //this.x = this.x + 1;
-      this.getHeroes();
-      //console.log("X: ", this.x);
-      //console.log("Aux Data Source: ", this.auxDataSource);
-      //console.log("Heroes Data Source: ", this.dataSource);
-      //console.log("Aux Data Array: ", this.auxDataSource);
-      //console.log("Data Array: ", this.dataArray);
-    }
-    */
-    
+    this.tableHeader = this.lettersArray[index];
 
   }
 
@@ -139,27 +118,6 @@ export class HeroListComponent {
     this.dataShareService.putDataToStream(id);
     this.router.navigate(['/hero-detail']);
   }
-
-  /*
-  getHeroes200(){
-    this.heroes = this.heroesService.getAllHeroes200();
-    this.heroes.forEach(element => this.dataArray1.data = element);
-
-    console.log("Heroes 2: ", this.dataArray1);
-  } */
-
-  
-  /*
-  fusionarData() {
-    //this.dataSource.data.push(this.dataArray1.data);
-    for (let i = 0; i < this.dataArray1.data.length; i++) {
-      this.dataSource.data.push(this.dataArray1.data[i]);
-    }
-
-    console.log("Heroes MIX: ", this.dataSource);
-    console.log("Heroe Nro 200: ", this.dataSource.data[199]);
-  }
-  */
   
   // ---------- [ TABLE SEARCH FILTER ] ----------
 
